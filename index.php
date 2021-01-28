@@ -1,31 +1,26 @@
 <?php
-/** Create a food order form */
 
-//Turn on error reporting
+//Turn in error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-//Require autoload file
+// require the autoload file
 require_once('vendor/autoload.php');
-
-//Instantiate Fat-Free
+// create an instance of the Base class
 $f3 = Base::instance();
+$f3-> set('DEBUG', 3);
 
-//Turn on Fat-Free error reporting
-$f3->set('DEBUG', 3);
-
-//Define a default route
-$f3->route('GET /', function() {
-
-    //Display a view
+// define a default route (home page)
+$f3 -> route ('GET /', function(){
+    //echo "<h1> My Food Page </h1>";
     $view = new Template();
-    echo $view->render('views/home.html');
+    echo $view->render("views/home.html");
 });
 
 //Define an order route
 $f3->route('GET /order', function() {
-
-    echo "Order route";
+    $view = new Template();
+    echo $view->render("views/order.html");
 });
 
 //Define an order2 route
@@ -40,5 +35,5 @@ $f3->route('GET /summary', function() {
     echo "Summary route";
 });
 
-//Run Fat-Free
+// run fat free
 $f3->run();
