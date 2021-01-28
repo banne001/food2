@@ -1,39 +1,44 @@
 <?php
+/** Create a food order form */
 
-//Turn in error reporting
+//Turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// require the autoload file
+//Require autoload file
 require_once('vendor/autoload.php');
-// create an instance of the Base class
+
+//Instantiate Fat-Free
 $f3 = Base::instance();
-$f3-> set('DEBUG', 3);
 
-// define a default route (home page)
-$f3 -> route ('GET /', function(){
-    //echo "<h1> My Food Page </h1>";
+//Turn on Fat-Free error reporting
+$f3->set('DEBUG', 3);
+
+//Define a default route
+$f3->route('GET /', function() {
+
+    //Display a view
     $view = new Template();
-    echo $view->render("views/home.html");
+    echo $view->render('views/home.html');
 });
 
-// define a "breakfast route"
-$f3->route('GET /breakfast', function(){
-    $view = new Template();
-    echo $view->render("views/breakfast.html");
+//Define an order route
+$f3->route('GET /order', function() {
+
+    echo "Order route";
 });
 
-// define a "lunch route"
-$f3->route('GET /lunch', function(){
-    $view = new Template();
-    echo $view->render("views/lunch.html");
+//Define an order2 route
+$f3->route('GET /order2', function() {
+
+    echo "Order 2 route";
 });
 
-// define a "Parametered route"
-$f3->route('GET /@first/@last', function($f3, $params){
-    echo "Hello, ". $params['first'] . " " .$params['last'];
+//Define a summary route
+$f3->route('GET /summary', function() {
+
+    echo "Summary route";
 });
 
-
-// run fat free
+//Run Fat-Free
 $f3->run();
